@@ -1,0 +1,10 @@
+this will be
+a program
+written
+in 
+c
+or
+pascal
+for
+further
+translation
