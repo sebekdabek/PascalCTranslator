@@ -4,11 +4,13 @@
 
 import sys
 
+output_file_location = "C:/Users/sdabek/PycharmProjects/PascalCTranslator/outputFiles/outputFile.txt"
+
 try:
     # Write and append file with some content (test)
     # If file doesnot exist - create new
-    f = open("C:/Users/sdabek/PycharmProjects/PascalCTranslator/outputFiles/outputFile.txt", "w+")
-    f = open("C:/Users/sdabek/PycharmProjects/PascalCTranslator/outputFiles/outputFile.txt", "a+")
+    f = open(output_file_location, "w+")
+    f = open(output_file_location, "a+")
     for i in range(20):
        f.write("This is line %d\r\n" % (i+1))
     f.close()
