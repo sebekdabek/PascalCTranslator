@@ -5,63 +5,50 @@
 
 import sys
 import ply.lex as lex
-from config import file_location
 
-tokens = (
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LPAREN',
-    'RPAREN',
+literals = [ '+','-','*','/','(',')',',' ]
+
+reserved = {
+    'while' : 'WHILE',
+    'else' : 'ELSE',
+    'switch':'SWITCH',
+    'case':'CASE',
+    'do' : 'DO',
+    'break': 'BREAK',
+    'return' : 'RETURN',
+    'float' : 'FLOAT',
+    'double' : 'DOUBLE',
+    'char' : 'CHAR',
+    'printf':'PRINTF',
+    'scanf' : 'SCANF'
+}
+
+tokens = [
     'NUMBER',
-    'COMMA',
     'SEMICOLON',
     'LEFTBRACE',
     'RIGHTBRACE',
     'ASSIGN',
     'EQUAL',
-)
+] + list(reserved.values())
 
-#reserved = {
-#    'while' : 'WHILE',
-#    'else' : 'ELSE',
-#    'switch':'SWITCH',
-#    'case':'CASE',
-#    'do' : 'DO',
-#    'break': 'BREAK',
-#    'return' : 'RETURN',
-#    'float' : 'FLOAT',
-#    'double' : 'DOUBLE',
-#    'char' : 'CHAR',
-#    'printf':'PRINTF',
-#    'scanf' : 'SCANF'
-#}
-
-t_PLUS   = r'\+'
-t_MINUS  = r'-'
-t_TIMES  = r'\*'
-t_DIVIDE = r'/'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_COMMA = r'\,'
 t_SEMICOLON = r'\;'
 t_LEFTBRACE = r'\{'
 t_RIGHTBRACE = r'\}'
 t_ASSIGN = r'='
 t_EQUAL = r'=='
-#t_WHILE = r'while'
-#t_ELSE = r'else'
-#t_SWITCH = r'switch'
-#t_CASE = r'case'
-#t_DO = r'do'
-#t_BREAK = r'break'
-#t_RETURN = r'return'
-#t_FLOAT = 'float'
-#t_DOUBLE = r'double'
-#t_CHAR = r'char'
-#t_PRINTF = r'printf'
-#t_SCANF = r'scanf'
+t_WHILE = r'while'
+t_ELSE = r'else'
+t_SWITCH = r'switch'
+t_CASE = r'case'
+t_DO = r'do'
+t_BREAK = r'break'
+t_RETURN = r'return'
+t_FLOAT = 'float'
+t_DOUBLE = r'double'
+t_CHAR = r'char'
+t_PRINTF = r'printf'
+t_SCANF = r'scanf'
 
 t_ignore = ' \t'
 
