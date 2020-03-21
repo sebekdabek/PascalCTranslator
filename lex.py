@@ -81,7 +81,7 @@ def t_error(t):
 lexer = lex.lex()
 
 try:
-    with open(file_location, 'r') as reader:
+    with open("inputFiles/calc.c", 'r') as reader:
         lexer.input(reader.read())
         for token in lexer:
             print("line %d: %s(%s)" %(token.lineno, token.type, token.value))
