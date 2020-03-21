@@ -5,7 +5,9 @@
 
 import sys
 import ply.lex as lex
+import ply.yacc as yacc;
 
+## Lexer part
 literals = [ '+','-','*','/','(',')',',' ]
 
 reserved = {
@@ -15,6 +17,7 @@ reserved = {
     'case':'CASE',
     'do' : 'DO',
     'break': 'BREAK',
+    'default': 'DEFAULT',
     'return' : 'RETURN',
     'float' : 'FLOAT',
     'double' : 'DOUBLE',
@@ -49,6 +52,7 @@ t_DOUBLE = r'double'
 t_CHAR = r'char'
 t_PRINTF = r'printf'
 t_SCANF = r'scanf'
+t_DEFAULT = r'default'
 
 t_ignore = ' \t'
 
@@ -67,9 +71,17 @@ def t_error(t):
 
 lexer = lex.lex()
 
+## Parser part
+def p_error(p):
+    print(  "syntax error in line %d" % p.lineno)
+
+#parser = yacc.yacc()
+
+## Main
 try:
     with open("inputFiles/calc.c", 'r') as reader:
         lexer.input(reader.read())
+#        parser.parse(reader.read(), lexer=lexer)
         for token in lexer:
             print("line %d: %s(%s)" %(token.lineno, token.type, token.value))
 

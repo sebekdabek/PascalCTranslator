@@ -1,2 +1,4 @@
 inputFiles/calc
 __pycache__
+parser.out
+inputFiles/hello-world.c
