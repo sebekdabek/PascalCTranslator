@@ -1,10 +1,10 @@
 # C to Pascal Parser
 Project for Formal Languages and Compilers 2020
 
-This project was created based on [PLY official documentation](https://www.dabeaz.com/ply/) and [university materials](http://home.agh.edu.pl/~mkuta/tklab/ply/ply.html). For grammar rules we've followed [this](https://www.lysator.liu.se/c/ANSI-C-grammar-l.html) lex specification for C grammar rules and [this](http://www.moorecad.com/standardpascal/pascal.y) yacc specification for Pascal.
+This project was created based on [PLY official documentation](https://www.dabeaz.com/ply/) and [university materials](http://home.agh.edu.pl/~mkuta/tklab/ply/ply.html). For grammar rules we've followed [this lex specification](https://www.lysator.liu.se/c/ANSI-C-grammar-l.html) for C and [this yacc specification](http://www.moorecad.com/standardpascal/pascal.y) for Pascal.
 
 ## How to run parser
-*Below instructions explain how to do this on **Linux***
+
 ### Before you start
 To run this project you will need:
 1. **PLY (Python Lex-Yacc)**<br>
@@ -25,6 +25,8 @@ program is performs simple mathematical operations like addition, substraction, 
 
 To compile and run C program (e.g calc.c) run below commands in inputFiles folder
 ```shell
-gcc -Wall calc.c -o calc && ./calc
+gcc -Wall calc.c -o calc
+./calc #Linux
+calc   #Windows
 ```
 The subset of C language was chosen to translate above programs.
