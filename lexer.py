@@ -1,17 +1,12 @@
-# C to Pascal translator
-# Sebastian Dabek, Magdalena Zajac
-# Formal Languages and Compilers
-# Spring 2020
-
 import sys
+
 import ply.lex as lex
-import ply.yacc as yacc
 
 # Reserved words
 reserved = (
     'BREAK', 'CASE', 'CHAR', 'CONST', 'CONTINUE', 'DEFAULT', 'DO', 'DOUBLE',
     'ELSE', 'ENUM', 'FLOAT', 'FOR', 'IF', 'INT', 'LONG', 'RETURN',
-    'SHORT', 'SIGNED', 'SIZEOF', 'STATIC', 'STRUCT', 'SWITCH', 'UNSIGNED',
+    'SHORT', 'SIGNED', 'SIZEOF', 'STATIC', 'STRUCT', 'SWITCH','UNSIGNED',
     'VOID', 'WHILE',
 )
 
@@ -49,12 +44,9 @@ tokens = reserved + (
 t_ignore = ' \t\x0c'
 
 # Newlines
-
-
 def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-
 
 # Operators
 t_PLUS = r'\+'
@@ -112,12 +104,10 @@ reserved_map = {}
 for r in reserved:
     reserved_map[r.lower()] = r
 
-
 def t_ID(t):
     r'[A-Za-z_][\w_]*'
     t.type = reserved_map.get(t.value, "ID")
     return t
-
 
 # Integer literal
 t_ICONST = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
@@ -141,52 +131,22 @@ def t_preprocessor(t):
     r'\#(.)*?\n'
     t.lexer.lineno += 1
 
-
 def t_error(t):
     print("Illegal character %s" % repr(t.value[0]))
     t.lexer.skip(1)
 
-
 lexer = lex.lex()
 
-# Parser part
-precedence = (
-    ('left', 'PLUS', 'MINUS'),
-    ('left', 'TIMES', 'DIVIDE'),
-    ('left', 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE'),
-    ('left', 'OR', 'AND', 'NOT', 'XOR', 'LOR', 'LAND', 'LNOT'),
-)
+try:
+    with open("inputFiles/calc.c", 'r') as reader:
+        text = reader.read()
+        lexer.input(text)
+        for token in lexer:
+            print("line %d: %s(%s)" %(token.lineno, token.type, token.value))
 
+except OSError as error:
+    print("Error: {0}".format(error))
 
-def p_file(p):
-    """file : program
-            | module"""
-
-
-def p_program(p):
-    '''program : program_heading SEMI block DOT'''
-
-
-def p_program_heading(p):
-    """program_heading : PROGRAM ID"""
-
-
-def p_semicolon(p):
-    '''semicolon : SEMI'''
-
-
-def p_comma(p):
-    '''comma : COMMA'''
-
-
-def p_error(p):
-    if p:
-        print("Syntax error at '%s'" % p.value)
-    else:
-        print("Syntax error at EOF")
-
-
-parser = yacc.yacc()
-reader = open("inputFiles/helloworld.c", 'r')
-text = reader.read()
-parser.parse(text, lexer=lexer)
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+    raise

@@ -1,6 +1,8 @@
 # C to Pascal Parser
 Project for Formal Languages and Compilers 2020
 
+This project was created based on [PLY official documentation](https://www.dabeaz.com/ply/) and [university materials](http://home.agh.edu.pl/~mkuta/tklab/ply/ply.html). For grammar rules we've followed [this](https://www.lysator.liu.se/c/ANSI-C-grammar-l.html) lex specification for C grammar rules and [this](http://www.moorecad.com/standardpascal/pascal.y) yacc specification for Pascal.
+
 ## How to run parser
 *Below instructions explain how to do this on **Linux***
 ### Before you start
