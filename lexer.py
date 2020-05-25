@@ -7,7 +7,7 @@ reserved = (
     'BREAK', 'CASE', 'CHAR', 'CONST', 'CONTINUE', 'DEFAULT', 'DO', 'DOUBLE',
     'ELSE', 'ENUM', 'FLOAT', 'FOR', 'IF', 'INT', 'LONG', 'RETURN',
     'SHORT', 'SIGNED', 'SIZEOF', 'STATIC', 'STRUCT', 'SWITCH','UNSIGNED',
-    'VOID', 'WHILE',
+    'VOID', 'WHILE', 'END', 'FUNCTION', 'PROCEDURE', 'PROGRAM', 'VAR', 'BEGIN'
 )
 
 tokens = reserved + (
@@ -21,7 +21,7 @@ tokens = reserved + (
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
 
     # Assignment (=, +=, -=)
-    'EQUALS', 'PLUSEQUAL', 'MINUSEQUAL',
+    'EQUAL', 'PLUSEQUAL', 'MINUSEQUAL',
 
     # Increment/decrement (++,--)
     'PLUSPLUS', 'MINUSMINUS',
@@ -30,14 +30,14 @@ tokens = reserved + (
     'LPAREN', 'RPAREN',
     'LBRACKET', 'RBRACKET',
     'LBRACE', 'RBRACE',
-    'COMMA', 'PERIOD',
+    'COMMA', 'DOT',
     'SEMI', 'COLON',
 
     # Ellipsis (...)
     'ELLIPSIS',
 
     #Pascal
-    'ASSIGNMENT', 'DOT', 'END', 'FUNCTION', 'PROCEDURE', 'PROGRAM', 'VAR',
+    'ASSIGNMENT',
 )
 
 # Completely ignored characters
@@ -68,7 +68,7 @@ t_EQ = r'=='
 t_NE = r'!='
 
 # Assignment operators
-t_EQUALS = r'='
+t_EQUAL = r'='
 t_PLUSEQUAL = r'\+='
 t_MINUSEQUAL = r'-='
 
@@ -84,19 +84,13 @@ t_RBRACKET = r'\]'
 t_LBRACE = r'\{'
 t_RBRACE = r'\}'
 t_COMMA = r','
-t_PERIOD = r'\.'
+t_DOT = r'\.'
 t_SEMI = r';'
 t_COLON = r':'
 t_ELLIPSIS = r'\.\.\.'
 
 #Pascal
-t_DOT = r'\.'
 t_ASSIGNMENT = r':='
-t_END = r'END'
-t_FUNCTION = r'FUNCTION'
-t_PROCEDURE = r'PROCEDURE'
-t_PROGRAM = r'PROGRAM'
-t_VAR = r'VAR'
 
 # Identifiers and reserved words
 reserved_map = {}
@@ -138,7 +132,7 @@ def t_error(t):
 lexer = lex.lex()
 
 try:
-    with open("inputFiles/calc.c", 'r') as reader:
+    with open("inputFiles/helloworld.c", 'r') as reader:
         text = reader.read()
         lexer.input(text)
         for token in lexer:
