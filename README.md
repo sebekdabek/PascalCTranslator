@@ -12,9 +12,9 @@ More information and installation instructions [here](http://www.dabeaz.com/ply/
 2. **Python3**<br>
 More information and installation instructions [here](https://www.python.org/downloads/).
 
-To run parser run below command
+To run program run below command
 ```shell
-python3 parser.py
+python3 main.py
 ```
 ## How it works
 In the first part of *parser.py* program we are doing lexical analysis of subset of C language. Files to parse are taken form inputFiles folder. We've created simple programs to test the parser:
